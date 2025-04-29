@@ -1,0 +1,9 @@
+---
+
+- name: wget puppet resource
+  ansible.builtin.get_url:
+    url: https://apt.puppet.com/puppet8-release-.deb
+    dest: ~/Downloads
+- name: install puppet
+  ansible.builtin.commands:
+

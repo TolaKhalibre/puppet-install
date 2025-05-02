@@ -1,9 +1,27 @@
 ---
 
-- name: wget puppet resource
-  ansible.builtin.get_url:
-    url: https://apt.puppet.com/puppet8-release-.deb
-    dest: ~/Downloads
-- name: install puppet
-  ansible.builtin.commands:
+- name: Download Puppet 8 release package
+  get_url:
+    url: "{{ puppet_deb_url }}"
+    dest: /tmp/"{{ puppet_deb }}"
 
+- name: Execute puppet 8 file
+  dpkg_selections:
+    dest: /tmp/"{{ puppet_deb }}"
+
+- name: install puppet agent
+  apt:
+    name: puppet-agent
+    state: present
+
+- name: Add puppet binary to .bashrc
+  lineinfile:
+    path: ~/.bashrc
+    line: 'export PATH=/opt/puppetlabs/bin:$PATH'
+    insertafter: EOF
+    state: present
+
+- name: Update .bashrc
+  shell: source ~/.bashrc
+  args:
+    executable: /bin/bash

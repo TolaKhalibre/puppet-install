@@ -2,12 +2,12 @@
 
 - name: Download Puppet 8 release package
   get_url:
-    url: "{{ puppet_deb_url }}"
-    dest: /tmp/"{{ puppet_deb }}"
+    url: '{{ puppet_deb_url }}'
+    dest: /tmp/
 
 - name: Execute puppet 8 file
   dpkg_selections:
-    dest: /tmp/"{{ puppet_deb }}"
+    dest: /tmp/'{{ puppet_deb }}'
 
 - name: install puppet agent
   apt:

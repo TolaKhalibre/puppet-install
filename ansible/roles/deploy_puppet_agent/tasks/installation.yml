@@ -5,16 +5,23 @@
     url: '{{ puppet_deb_url }}'
     dest: /tmp/
 
-- name: Execute puppet 8 file
-  dpkg_selections:
-    dest: /tmp/'{{ puppet_deb }}'
+- name: install puppet repo file
+  apt:
+    deb: /tmp/{{ puppet_deb }}
+  become: true
+
+- name: apt-get update
+  apt:
+    update_cache: true
+  become: true
 
 - name: install puppet agent
   apt:
     name: puppet-agent
     state: present
+  become: true
 
-- name: Add puppet binary to .bashrc
+- name: Add puppet path to .bashrc
   lineinfile:
     path: ~/.bashrc
     line: 'export PATH=/opt/puppetlabs/bin:$PATH'
@@ -25,3 +32,4 @@
   shell: source ~/.bashrc
   args:
     executable: /bin/bash
+

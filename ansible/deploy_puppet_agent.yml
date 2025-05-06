@@ -3,5 +3,4 @@
 - hosts: vagrant
   gather_facts: false
   roles:
-    - role: deploy_puppet-agent
-      tags: deploy_puppet_agent
+    - role: deploy_puppet_agent

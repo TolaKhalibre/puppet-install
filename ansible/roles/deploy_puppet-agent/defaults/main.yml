@@ -1,4 +1,0 @@
----
-
-puppet_deb: puppet8-release-jammy.deb
-puppet_deb_url: https://apt.puppet.com/puppet8-release-jammy.deb

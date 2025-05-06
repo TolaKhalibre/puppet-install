@@ -1,0 +1,11 @@
+---
+
+- name: tranfer template file
+
+
+- name: Enable puppet
+  systemd_service:
+    name: puppet
+    enabled: true
+    state: started
+  become: true

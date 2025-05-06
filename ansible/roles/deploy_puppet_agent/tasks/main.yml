@@ -1,0 +1,9 @@
+---
+
+- name: install puppet-agent for client
+  import_tasks: installation.yml
+  tags: never
+
+- name: confugration & setup to connecto to puppetserver
+  import_tasks: connect_to_server.yml
+  tags: deploy

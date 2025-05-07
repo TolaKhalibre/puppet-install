@@ -1,5 +1,5 @@
 [agent]
 
-server = "{{ puppet_server_ipv4 }}"
-certname = "{{ user_ipv4 }}"
+server = 192.168.56.3
+certname = {{ ansible_eth1.ipv4.address }}
 

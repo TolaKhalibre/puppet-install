@@ -1,0 +1,8 @@
+---
+
+- name: Enable puppet-server
+  systemd_service:
+    name: puppetserver
+    enabled: true
+    state: started
+  become: true

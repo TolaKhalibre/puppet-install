@@ -1,2 +1,4 @@
 ---
-# defaults file for ansible/roles/deploy_puppet-server
+
+puppet_deb: "{{ deploy_puppet_deb }}"
+puppet_deb_url: "{{ deploy_puppet_deb_url }}"

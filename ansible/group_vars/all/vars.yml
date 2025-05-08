@@ -1,0 +1,5 @@
+---
+
+deploy_puppet_deb: openvox8-release-{{ ansible_distribution | lower }}{{ ansible_distribution_version }}.deb
+deploy_puppet_deb_url: https://apt.voxpupuli.org/openvox8-release-{{ ansible_distribution | lower }}{{ ansible_distribution_version }}.deb
+vagrant_password: "{{ vault_user_password }}"

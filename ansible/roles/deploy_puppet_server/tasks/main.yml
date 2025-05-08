@@ -1,2 +1,10 @@
 ---
-# tasks file for ansible/roles/deploy_puppet-server
+
+- name: installation puppet-server
+  import_tasks: installations.yml
+  tags: never
+
+- name: configuration puppetserver
+  import_tasks: deploy_configuration_puppetserver.yml
+  tags: deploy
+

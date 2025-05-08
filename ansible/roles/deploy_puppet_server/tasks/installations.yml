@@ -1,0 +1,22 @@
+---
+
+- name: Download Puppet 8 release package
+  get_url:
+    url: '{{ puppet_deb_url }}'
+    dest: /tmp/
+
+- name: install puppet file
+  apt:
+    deb: /tmp/{{ puppet_deb }}
+  become: true
+
+- name: apt-get update
+  apt:
+    update_cache: true
+  become: true
+
+- name: install puppet puppet-server
+  apt:
+    name: openvox-server
+    state: present
+  become: true

@@ -1,7 +1,7 @@
 ---
 
-- hosts: vagrant
-  gather_facts: false
+- hosts: vagrant01
+  gather_facts: true
   roles:
     - role: deploy_puppet_server
       tags: deploy_puppet_server

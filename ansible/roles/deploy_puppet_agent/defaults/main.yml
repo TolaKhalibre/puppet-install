@@ -1,4 +1,4 @@
 ---
 
-puppet_deb: puppet8-release-noble.deb
-puppet_deb_url: https://apt.puppet.com/puppet8-release-noble.deb
+puppet_deb: "{{ deploy_puppet_deb }}"
+puppet_deb_url: "{{ deploy_puppet_deb_url }}"

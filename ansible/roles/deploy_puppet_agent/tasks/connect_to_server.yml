@@ -4,10 +4,17 @@
   command: awk '/^127\.0\.1\.1/ { print $2 }' /etc/hosts
   register: hostname_from_hosts
 
+- name: Remove file puppet.conf
+  file:
+    path: /etc/puppetlabs/puppet/puppet.conf
+    state: absent
+  become: true
+
 - name: tranfer template file
   template:
     src: templates/puppet.conf.j2
-    dest: /tmp/puppet.conf
+    dest: /etc/puppetlabs/puppet/puppet.conf
+  become: true
 
 - name: Add hostname to /etc/hosts
   lineinfile:
@@ -17,9 +24,9 @@
     state: present
   become: true
 
-# - name: Enable puppet
-#   systemd_service:
-#     name: puppet
-#     enabled: true
-#     state: started
-#   become: true
+- name: Enable puppet
+  systemd_service:
+    name: puppet
+    enabled: true
+    state: started
+  become: true

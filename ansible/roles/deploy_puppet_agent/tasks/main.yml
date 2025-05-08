@@ -4,6 +4,6 @@
   import_tasks: installation.yml
   tags: never
 
-- name: confugration & setup to connecto to puppetserver
+- name: confugration & setup to connect to puppetserver
   import_tasks: connect_to_server.yml
   tags: deploy

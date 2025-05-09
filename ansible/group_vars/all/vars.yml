@@ -2,4 +2,6 @@
 
 deploy_puppet_deb: openvox8-release-{{ ansible_distribution | lower }}{{ ansible_distribution_version }}.deb
 deploy_puppet_deb_url: https://apt.voxpupuli.org/openvox8-release-{{ ansible_distribution | lower }}{{ ansible_distribution_version }}.deb
+deploy_puppet_server_ip: 192.168.56.2
+deploy_puppet_server_name: puppet
 vagrant_password: "{{ vault_user_password }}"

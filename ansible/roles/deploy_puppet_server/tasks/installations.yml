@@ -20,3 +20,9 @@
     name: openvox-server
     state: present
   become: true
+
+- name: install puppet bolt
+  apt:
+    name: puppet-bolt
+    state: present
+  become: true

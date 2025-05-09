@@ -24,6 +24,14 @@
     state: present
   become: true
 
+- name: Add puppetserver to /etc/hosts
+  lineinfile:
+    path: /etc/hosts
+    line: '{{ puppet_server_ipv4 }} {{ puppet_server_name }}'
+    insertafter: '^ '
+    state: present
+  become: true
+
 - name: Enable puppet
   systemd_service:
     name: puppet

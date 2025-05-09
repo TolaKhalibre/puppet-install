@@ -1,5 +1,31 @@
 ---
 
+- name: Remove file puppetserver
+  file:
+    path: /etc/default/puppetserver
+    state: absent
+  become: true
+
+- name: tranfre template file
+  template:
+    src: templates/puppetserver.j2
+    dest: /etc/default/puppetserver
+  become: true
+
+- name: Add hostname to /etc/hosts
+  lineinfile:
+    path: /etc/hosts
+    line: '{{ ansible_eth1.ipv4.address }} puppet'
+    insertafter: '^ '
+    state: present
+  become: true
+
+- name: script for running configuration
+  template:
+    src: templates/site.pp.j2
+    dest: /etc/puppetlabs/code/environments/production/manifests/site.pp
+  become: true
+
 - name: Enable puppet-server
   systemd_service:
     name: puppetserver

@@ -1,6 +1,9 @@
 ---
 
+puppet_agent_name: "{{ deploy_agent_name }}"
+puppet_agnet_ipv4: "{{ deploy_agent_ipv4 }}"
 puppet_deb: "{{ deploy_puppet_deb }}"
 puppet_deb_url: "{{ deploy_puppet_deb_url }}"
 puppet_server_ipv4: "{{ deploy_puppet_server_ip }}"
 puppet_server_name: "{{ deploy_puppet_server_name }}"
+

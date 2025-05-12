@@ -1,8 +1,36 @@
 node 'default'{
+
+  # Install prerequisites
   package { 'software-properties-common':
     ensure => installed,
   }
-  exec{
-    command
+
+  # Add the OISF PPA for Suricata
+  exec { 'add_suricata_ppa':
+    command => '/usr/bin/add-apt-repository -y ppa:oisf/suricata-stable',
+    unless  => '/usr/bin/test -f /etc/apt/sources.list.d/oisf-ubuntu-suricata-stable*',
+    require => Package['software-properties-common'],
+    path    => ['/usr/bin', '/usr/sbin'],
+  }
+
+  # Update package list
+  exec { 'apt_update':
+    command     => '/usr/bin/apt-get update',
+    refreshonly => true,
+    subscribe   => Exec['add_suricata_ppa'],
+    path        => ['/usr/bin', '/usr/sbin'],
+  }
+
+  # Install Suricata and jq
+  package { ['suricata', 'jq']:
+    ensure  => installed,
+    require => Exec['apt_update'],
+  }
+
+  # Ensure Suricata service is running
+  service { 'suricata':
+    ensure => running,
+    enable => true,
+    require => Package['suricata'],
   }
 }

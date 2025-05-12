@@ -19,7 +19,7 @@
 - name: Add hostname to /etc/hosts
   lineinfile:
     path: /etc/hosts
-    line: '{{ ansible_eth1.ipv4.address }} {{ hostname_from_hosts.stdout }}'
+    line: '{{ puppet_agnet_ipv4 }} {{ puppet_agent_name }}'
     insertafter: '^ '
     state: present
   become: true

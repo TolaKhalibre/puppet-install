@@ -1,7 +1,22 @@
 ---
 
+deploy_agent_name: "{{ hostname_from_hosts.stdout }}"
+deploy_agent_ipv4: "{{ ansible_eth1.ipv4.address }}"
+deploy_suricata_rules_file: https://rules.emergingthreats.net/open/suricata-7.0.3/emerging.rules.tar.gz
+
+# file path
+deploy_suricata_config_file_path: /etc/suricata
+deploy_suricata_rule_path: /var/lib/suricata/rules
+deploy_suricata_path: /var/lib/suricata
+deploy_suricata_log: /var/log/suricata
+
+# suricata configuration
+deploy_suricata_enabled_community_id: true
+
 deploy_puppet_deb: openvox8-release-{{ ansible_distribution | lower }}{{ ansible_distribution_version }}.deb
 deploy_puppet_deb_url: https://apt.voxpupuli.org/openvox8-release-{{ ansible_distribution | lower }}{{ ansible_distribution_version }}.deb
-deploy_puppet_server_ip: 192.168.56.2
+deploy_puppet_server_ip: 192.168.56.3
 deploy_puppet_server_name: puppet
 vagrant_password: "{{ vault_user_password }}"
+
+
